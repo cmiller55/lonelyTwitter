@@ -13,4 +13,9 @@ public class SadMood extends Mood {
     public SadMood(Date date){
         super(date);
     }
+
+    @Override
+    public String printMood() {
+        return ":(";
+    }
 }

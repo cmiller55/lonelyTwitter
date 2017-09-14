@@ -24,4 +24,6 @@ public abstract class Mood {
     public void setDate(Date newDate) {
         this.date = newDate;
     }
+
+    public abstract String printMood();
 }
