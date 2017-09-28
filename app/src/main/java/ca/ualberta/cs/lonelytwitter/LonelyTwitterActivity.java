@@ -1,3 +1,16 @@
+
+/*
+ * LonelyTwitterActivity
+ *
+ * Version 1.0
+ *
+ * September 27, 2017
+ *
+ * Copyright (c) 2017 Team X, CMPUT301, University of Alberta - All Rights Reserved
+ * You may use, distribute, or modify this code under terms and conditions of the Code of Student Behavior at University of Alberta.
+ * You can find a copy of the license in this project. Otherwise please contact miller4@ualberta.ca.
+ */
+
 package ca.ualberta.cs.lonelytwitter;
 
 import java.io.BufferedReader;
@@ -7,15 +20,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Date;
+
 
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -25,6 +36,14 @@ import android.widget.ListView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+/**
+ * Activity for lonely twitter feed
+ *
+ * @author team X
+ * @version 1.0
+ * @see Tweet
+ * @since 1.0
+ */
 public class LonelyTwitterActivity extends Activity {
 
 	private static final String FILENAME = "file.sav";
@@ -33,8 +52,12 @@ public class LonelyTwitterActivity extends Activity {
 
 	private ArrayList<Tweet> tweets = new ArrayList<Tweet>();
 	private ArrayAdapter<Tweet> adapter;
-	
-	/** Called when the activity is first created. */
+
+	/**
+	 * Called when the activity is first created.
+	 *
+	 * @param savedInstanceState previous instance of activity
+	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -54,21 +77,13 @@ public class LonelyTwitterActivity extends Activity {
 				adapter.notifyDataSetChanged();
 				saveInFile();
 
-//				try {
-//					tweet.setMessage("Hello");
-//				} catch (TweetTooLongException e) {
-//					e.printStackTrace();
-//				}
-
-//				ArrayList<Tweet> tweetList = new ArrayList<Tweet>();
-				// Log.d("", "The isImportant method on tweet returns " + tweet.isImportant());
-				// Log.d("", "The isImportant method on tweet1 returns " + tweet1.isImportant());
-				// finish();
-
 			}
 		});
 	}
 
+	/**
+	 * Called when activity is started or restarted
+	 */
 	@Override
 	protected void onStart() {
 		// TODO Auto-generated method stub
@@ -79,6 +94,9 @@ public class LonelyTwitterActivity extends Activity {
 		oldTweetsList.setAdapter(adapter);
 	}
 
+	/**
+	 * Loads Tweets from saved file
+	 */
 	private void loadFromFile() {
 
 		try {
@@ -97,7 +115,10 @@ public class LonelyTwitterActivity extends Activity {
 			throw new RuntimeException(e);
 		}
 	}
-	
+
+	/**
+	 * Saves Tweets into save file
+	 */
 	private void saveInFile() {
 		try {
 			FileOutputStream fos = openFileOutput(FILENAME,
@@ -117,6 +138,11 @@ public class LonelyTwitterActivity extends Activity {
 		}
 	}
 
+	/**
+	 * Clears Tweets from list and saved file
+	 *
+	 * @param v container view from button click
+	 */
 	public void clearTweets(View v) {
 		tweets.removeAll(tweets);
 		adapter.notifyDataSetChanged();
