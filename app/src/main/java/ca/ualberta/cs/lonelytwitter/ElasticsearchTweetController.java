@@ -56,13 +56,13 @@ public class ElasticsearchTweetController {
             ArrayList<NormalTweet> tweets = new ArrayList<NormalTweet>();
 
                 // TODO Build the query
-            String query;
+            /*String query;
             if(search_parameters.length == 0){
                 query = "";
             } else {
                 query = "{\n" + "\"query\" : {\n" + "\"term\" : { \"message\" : \" " + search_parameters[0] + "\" }\n" + " }\n" + "}";
-            }
-            Search search = new Search.Builder(query ).addIndex("testing").addType("tweet").build();
+            }*/
+            Search search = new Search.Builder(search_parameters[0]).addIndex("testing").addType("tweet").build();
             try {
                // TODO get the results of the query
                 SearchResult result = client.execute((search));

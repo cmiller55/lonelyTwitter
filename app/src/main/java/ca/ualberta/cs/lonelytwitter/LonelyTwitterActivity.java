@@ -64,12 +64,13 @@ public class LonelyTwitterActivity extends Activity {
 
 			public void onClick(View v) {
 				setResult(RESULT_OK);
-				String text = bodyText.getText().toString();
+				String text = bodyText.getText().toString().trim();
+				String query = "{\n" + " \"query\": {\"term\": {\"message\":\"" + text + "\"} }\n" + "}";
 				ElasticsearchTweetController.GetTweetsTask getTweetsTask = new ElasticsearchTweetController.GetTweetsTask();
-				getTweetsTask.execute(text);
+				getTweetsTask.execute(query);
 
 				try {
-					tweetList = getTweetsTask.get();
+					tweetList.addAll(getTweetsTask.get());
 				} catch (Exception e) {
 					Log.i("Error", "Failed to get the tweets from the async object");
 				}
