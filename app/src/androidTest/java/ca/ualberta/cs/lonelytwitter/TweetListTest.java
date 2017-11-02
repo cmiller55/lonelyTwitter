@@ -2,7 +2,9 @@ package ca.ualberta.cs.lonelytwitter;
 
 import android.test.ActivityInstrumentationTestCase2;
 
-public class TweetListTest extends ActivityInstrumentationTestCase2 {
+// Refactoring #4 - used generics in test classes - implementation of generic operators increases
+// compatibility with the methods being called
+public class TweetListTest extends ActivityInstrumentationTestCase2<LonelyTwitterActivity> {
 
     public TweetListTest(){
         super(ca.ualberta.cs.lonelytwitter.LonelyTwitterActivity.class);
